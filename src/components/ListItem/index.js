@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   ${props =>
     props.clickable &&
     "&:hover {background: #f5f5f5;cursor: pointer;} "} ${props =>
-      props.active && "background: #f5f5f5;"};
+    props.active && "background: #f5f5f5;"};
 `
 
 const Item = styled.div`
@@ -40,6 +40,7 @@ class ListItem extends React.Component {
         active={active}
         clickable={item}
         onClick={item && (() => onClick(item))}
+        className="react-google-places-suggest-list-item"
       >
         {this.renderItem(item)}
       </Wrapper>

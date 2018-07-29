@@ -39,6 +39,7 @@ class List extends React.Component {
         <Wrapper
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
+          className="react-google-places-suggest-list"
         >
           {items.map((item, index) => (
             <ListItem
@@ -58,6 +59,7 @@ class List extends React.Component {
         <Wrapper
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
+          className="react-google-places-suggest-list"
         >
           <ListItem customRender={customRender} textNoResults={textNoResults} />
         </Wrapper>

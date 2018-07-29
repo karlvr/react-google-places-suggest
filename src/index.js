@@ -151,7 +151,10 @@ class GooglePlacesSuggest extends React.Component {
       textNoResults,
     } = this.props
     return (
-      <Wrapper onKeyDown={this.handleKeyDown}>
+      <Wrapper
+        onKeyDown={this.handleKeyDown}
+        className="react-google-places-suggest"
+      >
         {children}
         {open && (
           <List

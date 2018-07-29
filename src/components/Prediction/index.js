@@ -28,7 +28,7 @@ const Prediction = ({item}) => {
   }
 
   return (
-    <div>
+    <div className="react-google-places-suggest-prediction">
       {labelParts ? (
         <span>
           {labelParts.before}
