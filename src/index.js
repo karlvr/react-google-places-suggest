@@ -1,14 +1,8 @@
 /* global document */
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
 
 import List from "./components/List"
-
-const Wrapper = styled.div`
-  width: 100%;
-  position: relative;
-`
 
 class GooglePlacesSuggest extends React.Component {
   constructor(props) {
@@ -151,7 +145,7 @@ class GooglePlacesSuggest extends React.Component {
       textNoResults,
     } = this.props
     return (
-      <Wrapper
+      <div
         onKeyDown={this.handleKeyDown}
         className="react-google-places-suggest"
       >
@@ -167,7 +161,7 @@ class GooglePlacesSuggest extends React.Component {
             onFocusChange={this.onFocusChange}
           />
         )}
-      </Wrapper>
+      </div>
     )
   }
 }

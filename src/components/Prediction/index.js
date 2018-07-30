@@ -1,10 +1,5 @@
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
-
-const Match = styled.span`
-  font-weight: bold;
-`
 
 const Prediction = ({item}) => {
   const {description, matched_substrings} = item
@@ -32,7 +27,9 @@ const Prediction = ({item}) => {
       {labelParts ? (
         <span>
           {labelParts.before}
-          <Match>{labelParts.match}</Match>
+          <span className="react-google-places-suggest-prediction-match">
+            {labelParts.match}
+          </span>
           {labelParts.after}
         </span>
       ) : (

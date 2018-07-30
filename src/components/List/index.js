@@ -1,21 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
 
 import ListItem from "../ListItem"
-
-const Wrapper = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: white;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-shadow: 0 0.4rem 0.5rem 0.0625rem #dbdbdc;
-  z-index: 2;
-`
 
 class List extends React.Component {
   constructor(props) {
@@ -36,7 +22,7 @@ class List extends React.Component {
 
     if (items.length > 0) {
       return (
-        <Wrapper
+        <div
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           className="react-google-places-suggest-list"
@@ -50,19 +36,19 @@ class List extends React.Component {
               item={item}
             />
           ))}
-        </Wrapper>
+        </div>
       )
     }
 
     if (textNoResults || customRender) {
       return (
-        <Wrapper
+        <div
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           className="react-google-places-suggest-list"
         >
           <ListItem customRender={customRender} textNoResults={textNoResults} />
-        </Wrapper>
+        </div>
       )
     }
 
