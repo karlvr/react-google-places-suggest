@@ -1,0 +1,41 @@
+.react-google-places-suggest {
+	width: 100%;
+	position: relative;
+}
+
+.react-google-places-suggest-list-item-container.react-google-places-suggest-list-item-container-clickable:hover {
+	background: #f5f5f5;
+	cursor: pointer;
+}
+
+.react-google-places-suggest-list-item-container.react-google-places-suggest-list-item-container-active {
+	background: #f5f5f5;
+}
+
+.react-google-places-suggest-list-item {
+	padding: 0.3125rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.875rem;
+	display: flex;
+	align-items: center;
+	font-size: 0.8125rem;
+}
+
+.react-google-places-suggest-list {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: white;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	box-shadow: 0 0.4rem 0.5rem 0.0625rem #dbdbdc;
+	z-index: 2;
+}
+
+.react-google-places-suggest-prediction-match {
+	font-weight: bold;
+}

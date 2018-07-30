@@ -31,9 +31,6 @@
     "test": "jest --config jest.config.json --colors --no-cache",
     "test:watch": "yarn test -- --watch"
   },
-  "dependencies": {
-    "styled-components": "^3.1.6"
-  },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",

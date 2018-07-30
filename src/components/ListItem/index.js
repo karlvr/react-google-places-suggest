@@ -1,31 +1,16 @@
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
 
 import Prediction from "../Prediction"
-
-const Wrapper = styled.div`
-  ${props =>
-    props.clickable &&
-    "&:hover {background: #f5f5f5;cursor: pointer;} "} ${props =>
-    props.active && "background: #f5f5f5;"};
-`
-
-const Item = styled.div`
-  padding: 0.3125rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1.875rem;
-  display: flex;
-  align-items: center;
-  font-size: 0.8125rem;
-`
 
 class ListItem extends React.Component {
   renderDefault(item) {
     const {textNoResults} = this.props
-    return <Item>{item ? <Prediction item={item} /> : textNoResults}</Item>
+    return (
+      <div className="react-google-places-suggest-list-item">
+        {item ? <Prediction item={item} /> : textNoResults}
+      </div>
+    )
   }
 
   renderItem(item) {
@@ -36,14 +21,18 @@ class ListItem extends React.Component {
   render() {
     const {active, item, onClick} = this.props
     return (
-      <Wrapper
-        active={active}
-        clickable={item}
+      <div
         onClick={item && (() => onClick(item))}
-        className="react-google-places-suggest-list-item"
+        className={`react-google-places-suggest-list-item-container ${
+          item
+            ? "react-google-places-suggest-list-item-container-clickable"
+            : ""
+        } ${
+          active ? "react-google-places-suggest-list-item-container-active" : ""
+        }`}
       >
         {this.renderItem(item)}
-      </Wrapper>
+      </div>
     )
   }
 }
