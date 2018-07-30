@@ -1,18 +1,5 @@
-var _templateObject = _taggedTemplateLiteralLoose(
-  ["\n  font-weight: bold;\n"],
-  ["\n  font-weight: bold;\n"]
-)
-
-function _taggedTemplateLiteralLoose(strings, raw) {
-  strings.raw = raw
-  return strings
-}
-
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
-
-var Match = styled.span(_templateObject)
 
 var Prediction = function Prediction(_ref) {
   var item = _ref.item
@@ -46,7 +33,11 @@ var Prediction = function Prediction(_ref) {
           "span",
           null,
           labelParts.before,
-          React.createElement(Match, null, labelParts.match),
+          React.createElement(
+            "span",
+            {className: "react-google-places-suggest-prediction-match"},
+            labelParts.match
+          ),
           labelParts.after
         )
       : description

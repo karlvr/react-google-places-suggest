@@ -1,8 +1,3 @@
-var _templateObject = _taggedTemplateLiteralLoose(
-  ["\n  width: 100%;\n  position: relative;\n"],
-  ["\n  width: 100%;\n  position: relative;\n"]
-)
-
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function")
@@ -41,19 +36,11 @@ function _inherits(subClass, superClass) {
       : (subClass.__proto__ = superClass)
 }
 
-function _taggedTemplateLiteralLoose(strings, raw) {
-  strings.raw = raw
-  return strings
-}
-
 /* global document */
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
 
 import List from "./components/List"
-
-var Wrapper = styled.div(_templateObject)
 
 var GooglePlacesSuggest = (function(_React$Component) {
   _inherits(GooglePlacesSuggest, _React$Component)
@@ -228,7 +215,7 @@ var GooglePlacesSuggest = (function(_React$Component) {
       textNoResults = _props.textNoResults
 
     return React.createElement(
-      Wrapper,
+      "div",
       {
         onKeyDown: this.handleKeyDown,
         className: "react-google-places-suggest",

@@ -1,16 +1,3 @@
-var _templateObject = _taggedTemplateLiteralLoose(
-    ["\n  ", " ", ";\n"],
-    ["\n  ", " ", ";\n"]
-  ),
-  _templateObject2 = _taggedTemplateLiteralLoose(
-    [
-      "\n  padding: 0.3125rem;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  line-height: 1.875rem;\n  display: flex;\n  align-items: center;\n  font-size: 0.8125rem;\n",
-    ],
-    [
-      "\n  padding: 0.3125rem;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  line-height: 1.875rem;\n  display: flex;\n  align-items: center;\n  font-size: 0.8125rem;\n",
-    ]
-  )
-
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function")
@@ -49,28 +36,10 @@ function _inherits(subClass, superClass) {
       : (subClass.__proto__ = superClass)
 }
 
-function _taggedTemplateLiteralLoose(strings, raw) {
-  strings.raw = raw
-  return strings
-}
-
 import PropTypes from "prop-types"
 import React from "react"
-import styled from "styled-components"
 
 import Prediction from "../Prediction"
-
-var Wrapper = styled.div(
-  _templateObject,
-  function(props) {
-    return props.clickable && "&:hover {background: #f5f5f5;cursor: pointer;} "
-  },
-  function(props) {
-    return props.active && "background: #f5f5f5;"
-  }
-)
-
-var Item = styled.div(_templateObject2)
 
 var ListItem = (function(_React$Component) {
   _inherits(ListItem, _React$Component)
@@ -88,8 +57,8 @@ var ListItem = (function(_React$Component) {
     var textNoResults = this.props.textNoResults
 
     return React.createElement(
-      Item,
-      null,
+      "div",
+      {className: "react-google-places-suggest-list-item"},
       item ? React.createElement(Prediction, {item: item}) : textNoResults
     )
   }
@@ -107,16 +76,22 @@ var ListItem = (function(_React$Component) {
       onClick = _props.onClick
 
     return React.createElement(
-      Wrapper,
+      "div",
       {
-        active: active,
-        clickable: item,
         onClick:
           item &&
           function() {
             return onClick(item)
           },
-        className: "react-google-places-suggest-list-item",
+        className:
+          "react-google-places-suggest-list-item-container " +
+          (item
+            ? "react-google-places-suggest-list-item-container-clickable"
+            : "") +
+          " " +
+          (active
+            ? "react-google-places-suggest-list-item-container-active"
+            : ""),
       },
       this.renderItem(item)
     )
