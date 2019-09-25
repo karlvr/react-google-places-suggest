@@ -1,3 +1,31 @@
+# 3.8.0 - 2019-05-21
+
+-   Added: onStatusUpdate callback prop by @brpratt
+
+# 3.7.1 - 2019-04-04
+
+-   Fixed: Fixing "powered by google logo" by @BradyKDavis
+
+# 3.7.0 - 2019-04-01
+
+-   Added: Display "powered by google logo" by @BradyKDavis
+
+# 3.6.1 - 2019-03-11
+
+-   Fixed: Prediction text wrap by @nmiddendorff
+
+# 3.6.0 - 2019-03-08
+
+-   Added: onNoResult callback by @nmiddendorff
+
+# 3.5.2 - 2019-02-19
+
+-   Fixed: Dropdown item in whitespace not clickable by @saikatharryc
+
+# 3.5.1 - 2019-01-07
+
+-   Fixed: font-weight highlighting when using arrow keys by @nmiddendorff
+
 # 3.5.0 - 2018-07-18
 
 -   Updated: Hide suggestions when clicking outside them by @jjavierdguezas

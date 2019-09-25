@@ -2,6 +2,20 @@ import PropTypes from "prop-types"
 import React from "react"
 
 import ListItem from "../ListItem"
+import PoweredByGoogleLogo from "../PoweredByGoogleLogo"
+
+const Wrapper = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 0.4rem 0.5rem 0.0625rem #dbdbdc;
+  z-index: 2;
+`
 
 class List extends React.Component {
   constructor(props) {
@@ -16,6 +30,7 @@ class List extends React.Component {
       customRender,
       items,
       activeItemIndex,
+      displayPoweredByGoogle,
       onSelect,
       textNoResults,
     } = this.props
@@ -36,6 +51,7 @@ class List extends React.Component {
               item={item}
             />
           ))}
+          {displayPoweredByGoogle && <PoweredByGoogleLogo />}
         </div>
       )
     }
@@ -48,6 +64,7 @@ class List extends React.Component {
           className="react-google-places-suggest-list"
         >
           <ListItem customRender={customRender} textNoResults={textNoResults} />
+          {displayPoweredByGoogle && <PoweredByGoogleLogo />}
         </div>
       )
     }
@@ -71,6 +88,7 @@ class List extends React.Component {
 
   render() {
     const {customContainerRender, items} = this.props
+
     return customContainerRender
       ? customContainerRender(items)
       : this.renderDefault(items)
@@ -94,6 +112,7 @@ List.propTypes = {
     PropTypes.arrayOf(PropTypes.instanceOf(ListItem)),
     PropTypes.instanceOf(ListItem),
   ]),
+  displayPoweredByGoogle: PropTypes.bool,
   onSelect: PropTypes.func,
   onFocusChange: PropTypes.func,
   customContainerRender: PropTypes.func,

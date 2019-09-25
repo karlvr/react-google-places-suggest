@@ -71,7 +71,8 @@ class GooglePlacesSuggest extends React.Component {
 
     autocompleteService.getPlacePredictions(
       autocompletionRequest, // https://developers.google.com/maps/documentation/javascript/reference?hl=fr#AutocompletionRequest
-      predictions => {
+      (predictions, status) => {
+        this.props.onStatusUpdate(status)
         if (!predictions) {
           this.setState({open: true, predictions: []})
           return
@@ -119,6 +120,10 @@ class GooglePlacesSuggest extends React.Component {
           this.focusPrediction(focusedPredictionIndex + 1)
         }
       }
+    } else if (e.key === "Enter") {
+      const {onNoResult} = this.props
+
+      onNoResult()
     }
   }
 
@@ -142,6 +147,7 @@ class GooglePlacesSuggest extends React.Component {
       children,
       customContainerRender,
       customRender,
+      displayPoweredByGoogle,
       textNoResults,
     } = this.props
     return (
@@ -156,6 +162,7 @@ class GooglePlacesSuggest extends React.Component {
             activeItemIndex={focusedPredictionIndex}
             customContainerRender={customContainerRender}
             customRender={customRender}
+            displayPoweredByGoogle={displayPoweredByGoogle}
             onSelect={suggest => this.handleSelectPrediction(suggest)}
             textNoResults={textNoResults}
             onFocusChange={this.onFocusChange}
@@ -169,9 +176,12 @@ class GooglePlacesSuggest extends React.Component {
 GooglePlacesSuggest.propTypes = {
   children: PropTypes.any.isRequired,
   googleMaps: PropTypes.object.isRequired,
+  onNoResult: PropTypes.func,
   onSelectSuggest: PropTypes.func,
+  onStatusUpdate: PropTypes.func,
   customContainerRender: PropTypes.func,
   customRender: PropTypes.func,
+  displayPoweredByGoogle: PropTypes.bool,
   autocompletionRequest: PropTypes.shape({
     input: PropTypes.string.isRequired,
   }).isRequired,
@@ -179,7 +189,10 @@ GooglePlacesSuggest.propTypes = {
 }
 
 GooglePlacesSuggest.defaultProps = {
+  displayPoweredByGoogle: true,
+  onNoResult: () => {},
   onSelectSuggest: () => {},
+  onStatusUpdate: () => {},
   textNoResults: "No results",
 }
 

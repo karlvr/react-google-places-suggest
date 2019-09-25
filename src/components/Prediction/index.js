@@ -1,12 +1,21 @@
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
+
+const Match = styled.span`
+  font-weight: bold;
+`
+const UpperDiv = styled.div`
+  text-align: left;
+  width: 100%;
+`
 
 const Prediction = ({item}) => {
-  const {description, matched_substrings} = item
+  const {description, structured_formatting} = item
   const firstMatchedString =
-    matched_substrings &&
-    matched_substrings.length > 0 &&
-    matched_substrings.shift()
+    structured_formatting &&
+    structured_formatting.main_text_matched_substrings.length > 0 &&
+    structured_formatting.main_text_matched_substrings[0]
   let labelParts = null
 
   if (firstMatchedString) {
@@ -23,7 +32,7 @@ const Prediction = ({item}) => {
   }
 
   return (
-    <div className="react-google-places-suggest-prediction">
+    <UpperDiv className="react-google-places-suggest-prediction">
       {labelParts ? (
         <span>
           {labelParts.before}
@@ -35,19 +44,21 @@ const Prediction = ({item}) => {
       ) : (
         description
       )}
-    </div>
+    </UpperDiv>
   )
 }
 
 Prediction.propTypes = {
   item: PropTypes.shape({
     description: PropTypes.string,
-    matched_substrings: PropTypes.arrayOf(
-      PropTypes.shape({
-        length: PropTypes.number.isRequired,
-        offset: PropTypes.number.isRequired,
-      })
-    ),
+    structured_formatting: PropTypes.shape({
+      main_text_matched_substrings: PropTypes.arrayOf(
+        PropTypes.shape({
+          length: PropTypes.number.isRequired,
+          offset: PropTypes.number.isRequired,
+        })
+      ),
+    }),
   }).isRequired,
 }
 
