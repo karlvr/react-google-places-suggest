@@ -128,7 +128,8 @@ var GooglePlacesSuggest = (function(_React$Component) {
 
     autocompleteService.getPlacePredictions(
       autocompletionRequest, // https://developers.google.com/maps/documentation/javascript/reference?hl=fr#AutocompletionRequest
-      function(predictions) {
+      function(predictions, status) {
+        _this3.props.onStatusUpdate(status)
         if (!predictions) {
           _this3.setState({open: true, predictions: []})
           return
@@ -182,6 +183,10 @@ var GooglePlacesSuggest = (function(_React$Component) {
           this.focusPrediction(focusedPredictionIndex + 1)
         }
       }
+    } else if (e.key === "Enter") {
+      var onNoResult = this.props.onNoResult
+
+      onNoResult()
     }
   }
 
@@ -212,6 +217,7 @@ var GooglePlacesSuggest = (function(_React$Component) {
       children = _props.children,
       customContainerRender = _props.customContainerRender,
       customRender = _props.customRender,
+      displayPoweredByGoogle = _props.displayPoweredByGoogle,
       textNoResults = _props.textNoResults
 
     return React.createElement(
@@ -227,6 +233,7 @@ var GooglePlacesSuggest = (function(_React$Component) {
           activeItemIndex: focusedPredictionIndex,
           customContainerRender: customContainerRender,
           customRender: customRender,
+          displayPoweredByGoogle: displayPoweredByGoogle,
           onSelect: function onSelect(suggest) {
             return _this4.handleSelectPrediction(suggest)
           },
@@ -244,9 +251,12 @@ GooglePlacesSuggest.propTypes =
     ? {
         children: PropTypes.any.isRequired,
         googleMaps: PropTypes.object.isRequired,
+        onNoResult: PropTypes.func,
         onSelectSuggest: PropTypes.func,
+        onStatusUpdate: PropTypes.func,
         customContainerRender: PropTypes.func,
         customRender: PropTypes.func,
+        displayPoweredByGoogle: PropTypes.bool,
         autocompletionRequest: PropTypes.shape({
           input: PropTypes.string.isRequired,
         }).isRequired,
@@ -255,7 +265,10 @@ GooglePlacesSuggest.propTypes =
     : {}
 
 GooglePlacesSuggest.defaultProps = {
+  displayPoweredByGoogle: true,
+  onNoResult: function onNoResult() {},
   onSelectSuggest: function onSelectSuggest() {},
+  onStatusUpdate: function onStatusUpdate() {},
   textNoResults: "No results",
 }
 

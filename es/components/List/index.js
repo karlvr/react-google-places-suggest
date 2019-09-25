@@ -1,3 +1,12 @@
+var _templateObject = _taggedTemplateLiteralLoose(
+  [
+    "\n  position: absolute;\n  top: 100%;\n  left: 0;\n  right: 0;\n  background: white;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  box-shadow: 0 0.4rem 0.5rem 0.0625rem #dbdbdc;\n  z-index: 2;\n",
+  ],
+  [
+    "\n  position: absolute;\n  top: 100%;\n  left: 0;\n  right: 0;\n  background: white;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  box-shadow: 0 0.4rem 0.5rem 0.0625rem #dbdbdc;\n  z-index: 2;\n",
+  ]
+)
+
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function")
@@ -36,10 +45,19 @@ function _inherits(subClass, superClass) {
       : (subClass.__proto__ = superClass)
 }
 
+function _taggedTemplateLiteralLoose(strings, raw) {
+  strings.raw = raw
+  return strings
+}
+
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 
 import ListItem from "../ListItem"
+import PoweredByGoogleLogo from "../PoweredByGoogleLogo"
+
+var Wrapper = styled.div(_templateObject)
 
 var List = (function(_React$Component) {
   _inherits(List, _React$Component)
@@ -62,12 +80,13 @@ var List = (function(_React$Component) {
       customRender = _props.customRender,
       items = _props.items,
       activeItemIndex = _props.activeItemIndex,
+      displayPoweredByGoogle = _props.displayPoweredByGoogle,
       onSelect = _props.onSelect,
       textNoResults = _props.textNoResults
 
     if (items.length > 0) {
       return React.createElement(
-        "div",
+        Wrapper,
         {
           onMouseEnter: this.handleMouseEnter,
           onMouseLeave: this.handleMouseLeave,
@@ -83,13 +102,14 @@ var List = (function(_React$Component) {
             },
             item: item,
           })
-        })
+        }),
+        displayPoweredByGoogle && React.createElement(PoweredByGoogleLogo, null)
       )
     }
 
     if (textNoResults || customRender) {
       return React.createElement(
-        "div",
+        Wrapper,
         {
           onMouseEnter: this.handleMouseEnter,
           onMouseLeave: this.handleMouseLeave,
@@ -98,7 +118,8 @@ var List = (function(_React$Component) {
         React.createElement(ListItem, {
           customRender: customRender,
           textNoResults: textNoResults,
-        })
+        }),
+        displayPoweredByGoogle && React.createElement(PoweredByGoogleLogo, null)
       )
     }
 
@@ -153,6 +174,7 @@ List.propTypes =
           PropTypes.arrayOf(PropTypes.instanceOf(ListItem)),
           PropTypes.instanceOf(ListItem),
         ]),
+        displayPoweredByGoogle: PropTypes.bool,
         onSelect: PropTypes.func,
         onFocusChange: PropTypes.func,
         customContainerRender: PropTypes.func,

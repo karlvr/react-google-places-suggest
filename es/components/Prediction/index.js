@@ -1,15 +1,33 @@
+var _templateObject = _taggedTemplateLiteralLoose(
+    ["\n  font-weight: bold;\n"],
+    ["\n  font-weight: bold;\n"]
+  ),
+  _templateObject2 = _taggedTemplateLiteralLoose(
+    ["\n  text-align: left;\n  width: 100%;\n"],
+    ["\n  text-align: left;\n  width: 100%;\n"]
+  )
+
+function _taggedTemplateLiteralLoose(strings, raw) {
+  strings.raw = raw
+  return strings
+}
+
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
+
+var Match = styled.span(_templateObject)
+var UpperDiv = styled.div(_templateObject2)
 
 var Prediction = function Prediction(_ref) {
   var item = _ref.item
   var description = item.description,
-    matched_substrings = item.matched_substrings
+    structured_formatting = item.structured_formatting
 
   var firstMatchedString =
-    matched_substrings &&
-    matched_substrings.length > 0 &&
-    matched_substrings.shift()
+    structured_formatting &&
+    structured_formatting.main_text_matched_substrings.length > 0 &&
+    structured_formatting.main_text_matched_substrings[0]
   var labelParts = null
 
   if (firstMatchedString) {
@@ -26,7 +44,7 @@ var Prediction = function Prediction(_ref) {
   }
 
   return React.createElement(
-    "div",
+    UpperDiv,
     {className: "react-google-places-suggest-prediction"},
     labelParts
       ? React.createElement(
@@ -34,7 +52,7 @@ var Prediction = function Prediction(_ref) {
           null,
           labelParts.before,
           React.createElement(
-            "span",
+            Match,
             {className: "react-google-places-suggest-prediction-match"},
             labelParts.match
           ),
@@ -49,12 +67,14 @@ Prediction.propTypes =
     ? {
         item: PropTypes.shape({
           description: PropTypes.string,
-          matched_substrings: PropTypes.arrayOf(
-            PropTypes.shape({
-              length: PropTypes.number.isRequired,
-              offset: PropTypes.number.isRequired,
-            })
-          ),
+          structured_formatting: PropTypes.shape({
+            main_text_matched_substrings: PropTypes.arrayOf(
+              PropTypes.shape({
+                length: PropTypes.number.isRequired,
+                offset: PropTypes.number.isRequired,
+              })
+            ),
+          }),
         }).isRequired,
       }
     : {}
