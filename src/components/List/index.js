@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 
 import ListItem from "../ListItem"
 import PoweredByGoogleLogo from "../PoweredByGoogleLogo"
@@ -37,7 +38,7 @@ class List extends React.Component {
 
     if (items.length > 0) {
       return (
-        <div
+        <Wrapper
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           className="react-google-places-suggest-list"
@@ -52,20 +53,20 @@ class List extends React.Component {
             />
           ))}
           {displayPoweredByGoogle && <PoweredByGoogleLogo />}
-        </div>
+        </Wrapper>
       )
     }
 
     if (textNoResults || customRender) {
       return (
-        <div
+        <Wrapper
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           className="react-google-places-suggest-list"
         >
           <ListItem customRender={customRender} textNoResults={textNoResults} />
           {displayPoweredByGoogle && <PoweredByGoogleLogo />}
-        </div>
+        </Wrapper>
       )
     }
 

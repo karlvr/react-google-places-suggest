@@ -36,9 +36,9 @@ const Prediction = ({item}) => {
       {labelParts ? (
         <span>
           {labelParts.before}
-          <span className="react-google-places-suggest-prediction-match">
+          <Match className="react-google-places-suggest-prediction-match">
             {labelParts.match}
-          </span>
+          </Match>
           {labelParts.after}
         </span>
       ) : (
